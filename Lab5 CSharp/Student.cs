@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace Lab5_CSharp
 {
     enum Education { Specialist, Bachelor, SecondEducation }
-    class Student : Person , INotifyPropertyChanged
-
+    [Serializable]
+    class Student : Person , INotifyPropertyChanged 
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -21,6 +23,7 @@ namespace Lab5_CSharp
         private int groupnumber;
         private System.Collections.Generic.List<Test> testdone = new List<Test>();
         private System.Collections.Generic.List<Exam> list = new List<Exam>();
+
         //Свойства:
         public Person GetPerson
         {
@@ -74,6 +77,123 @@ namespace Lab5_CSharp
             GroupNumber = 2;
         }
         //Методы:
+
+        public new Student DeepCopy()
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            formatter.Serialize(memoryStream, this);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            Student copy = (Student)formatter.Deserialize(memoryStream);
+            return copy;
+        }
+        public bool Save(string filename)
+        {
+            string filepath = "..\\..\\" + filename;
+            var formatter = new BinaryFormatter();
+
+            var di = new DirectoryInfo(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
+            if (di.GetFiles(filename).Length == 0)
+                Console.WriteLine("Failed to open file. Creating new one\n");
+
+            using (var fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            {
+                try
+                {
+                    formatter.Serialize(fileStream, this);
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("Failed to serialize. Reason: " + e.Message);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        public bool Load(string filename)
+        {
+            string filepath = "..\\..\\" + filename;
+            var formatter = new BinaryFormatter();
+            Student st;
+            var di = new DirectoryInfo(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
+            if (di.GetFiles(filename).Length == 0)
+                Console.WriteLine("Failed to open file.Creating new one\n");
+            using (var fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
+            {
+                try
+                {
+                    fileStream.Seek(0, SeekOrigin.Begin);
+                    st = (Student)formatter.Deserialize(fileStream);
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                    return false;
+                }
+            }
+
+            GetPerson = st.GetPerson;
+            Education = st.education;
+            GroupNumber = st.GroupNumber;
+            List = st.List;
+            TestDone = st.TestDone;
+            return true;
+        }
+
+        public static bool Save(string filename, Student obj)
+        {
+            return obj != null && obj.Save(filename);
+        }
+        public static bool Load(string filename, Student obj)
+        {
+            return obj != null && obj.Load(filename);
+        }
+
+        public bool AddFromConsole()
+        {
+            int numberOfParameters = 3;
+            Exam exam;
+            Console.Write("Enter information about exam(Subject name, mark, exam date(yyyy.mm.dd)");
+            Console.Write(" (allowable separators { ,  ; / }): \n=> ");
+            string text = Console.ReadLine();
+
+
+            string[] pieces = text.Split(new char[] { ',', ';', '/' });
+
+            if (pieces.Length != numberOfParameters) return false;
+
+            string[] datePieces = pieces[2].Split('.');
+            if (datePieces.Length != numberOfParameters) return false;
+
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                pieces[i] = pieces[i].Trim();
+                datePieces[i] = datePieces[i].Trim();
+            }
+
+            try
+            {
+                exam = new Exam(pieces[0], Int32.Parse( pieces[1]),
+                    new DateTime(
+                        int.Parse(datePieces[0]), int.Parse(datePieces[1]), int.Parse(datePieces[2])));
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Incorrect date entry: " + e.Message + "\n");
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "\n");
+                return false;
+            }
+
+           AddExams(exam);
+
+            return true;
+        }
         public double AverageMark
         {
             get
