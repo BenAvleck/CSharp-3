@@ -1,0 +1,11 @@
+[color]
+        ui = true
+[user]
+        name = Veniamin Aveltsev
+        email = ben.avleck@gmail.com
+[credential]
+        helper = cache --timeout=<3600>
+[alias]
+    cd = checkout
+    dir = branch
+    free = branch -D
