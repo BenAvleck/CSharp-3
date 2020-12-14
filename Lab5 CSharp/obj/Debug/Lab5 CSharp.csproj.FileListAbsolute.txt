@@ -1,0 +1,14 @@
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.exe.config
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.exe
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.pdb
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.csprojAssemblyReference.cache
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.csproj.CoreCompileInputs.cache
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.exe
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб1\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.pdb
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.exe.config
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.exe
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\bin\Debug\Lab5 CSharp.pdb
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.csprojAssemblyReference.cache
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.csproj.CoreCompileInputs.cache
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.exe
+G:\PZ-19-2\c# Проф. практика программной инженерии\Лаб2\Lab5 CSharp\Lab5 CSharp\obj\Debug\Lab5 CSharp.pdb
